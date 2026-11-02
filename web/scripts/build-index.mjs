@@ -142,7 +142,7 @@ async function main() {
   const publication = await readPublicationManifest();
   const chapters = await buildPublishedChapters(publication);
   const totalWords = chapters.reduce((sum, chapter) => sum + chapter.words, 0);
-  const index = { generatedAt: new Date().toISOString(), chapters, totalWords };
+  const index = { generatedAt: new Date().toISOString(), chapters, canon: [], totalWords };
 
   await fs.writeFile(path.join(OUT, "index.json"), JSON.stringify(index, null, 2), "utf8");
   console.log(
