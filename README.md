@@ -12,7 +12,7 @@ Fokus utamanya bukan menjadi aplikasi catatan atau SaaS, melainkan membantu meng
 1. **Story first** — pengembangan cerita lebih penting daripada fitur dekoratif.
 2. **Canon is the source of truth** — fakta cerita yang disetujui menjadi acuan utama.
 3. **Human approval** — hasil AI tidak menjadi versi resmi tanpa persetujuan pengguna.
-4. **Continuity before convenience** — GPT harus memeriksa keadaan cerita sebelum melanjutkan.
+4. **Continuity before convenience** — AI harus memeriksa keadaan cerita sebelum melanjutkan.
 5. **Version everything** — revisi tidak menghapus versi sebelumnya.
 6. **Low-cost first** — MVP tidak bergantung pada API AI berbayar atau backend berbayar.
 
