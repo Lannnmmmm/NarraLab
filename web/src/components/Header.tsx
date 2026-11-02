@@ -7,7 +7,7 @@ import {
   type ReadingFont,
   type ReadingWidth,
 } from "../settings";
-import { hrefCanon, hrefLibrary } from "../router";
+import { hrefLibrary } from "../router";
 import type { ThemePref } from "../theme";
 import { AutoIcon, MoonIcon, SunIcon, TextIcon } from "./Icons";
 
@@ -42,11 +42,11 @@ export default function Header({ page, theme, onTheme, reader, onReader }: Heade
 
   useEffect(() => {
     if (!open) return;
-    const onDown = (e: MouseEvent) => {
-      if (panelRef.current && !panelRef.current.contains(e.target as Node)) setOpen(false);
+    const onDown = (event: MouseEvent) => {
+      if (panelRef.current && !panelRef.current.contains(event.target as Node)) setOpen(false);
     };
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
     };
     document.addEventListener("mousedown", onDown);
     document.addEventListener("keydown", onKey);
@@ -60,18 +60,13 @@ export default function Header({ page, theme, onTheme, reader, onReader }: Heade
     <header className="site-header">
       <div className="site-header-inner">
         <a className="brand" href={hrefLibrary()}>
-          <span className="brand-mark" aria-hidden="true">
-            N
-          </span>
+          <span className="brand-mark" aria-hidden="true">N</span>
           <span className="brand-name">NarraLab</span>
         </a>
 
         <nav className="site-nav" aria-label="Navigasi utama">
           <a href={hrefLibrary()} aria-current={page === "library" || page === "chapter" ? "page" : undefined}>
             Novel
-          </a>
-          <a href={hrefCanon()} aria-current={page === "canon" ? "page" : undefined}>
-            Canon
           </a>
         </nav>
 
@@ -83,7 +78,7 @@ export default function Header({ page, theme, onTheme, reader, onReader }: Heade
               aria-label="Pengaturan membaca"
               aria-expanded={open}
               aria-controls="reader-panel"
-              onClick={() => setOpen((v) => !v)}
+              onClick={() => setOpen((value) => !value)}
             >
               <TextIcon />
             </button>
@@ -100,21 +95,21 @@ export default function Header({ page, theme, onTheme, reader, onReader }: Heade
                     max={FONT_SIZE_MAX}
                     step={1}
                     value={reader.fontSize}
-                    onChange={(e) => onReader({ ...reader, fontSize: Number(e.target.value) })}
+                    onChange={(event) => onReader({ ...reader, fontSize: Number(event.target.value) })}
                   />
                 </label>
 
                 <div className="field">
                   <span className="field-label">Jenis huruf</span>
                   <div className="segmented" role="group" aria-label="Jenis huruf">
-                    {FONTS.map((f) => (
+                    {FONTS.map((font) => (
                       <button
-                        key={f.id}
+                        key={font.id}
                         type="button"
-                        aria-pressed={reader.font === f.id}
-                        onClick={() => onReader({ ...reader, font: f.id })}
+                        aria-pressed={reader.font === font.id}
+                        onClick={() => onReader({ ...reader, font: font.id })}
                       >
-                        {f.label}
+                        {font.label}
                       </button>
                     ))}
                   </div>
@@ -123,14 +118,14 @@ export default function Header({ page, theme, onTheme, reader, onReader }: Heade
                 <div className="field">
                   <span className="field-label">Lebar teks</span>
                   <div className="segmented" role="group" aria-label="Lebar teks">
-                    {WIDTHS.map((w) => (
+                    {WIDTHS.map((width) => (
                       <button
-                        key={w.id}
+                        key={width.id}
                         type="button"
-                        aria-pressed={reader.width === w.id}
-                        onClick={() => onReader({ ...reader, width: w.id })}
+                        aria-pressed={reader.width === width.id}
+                        onClick={() => onReader({ ...reader, width: width.id })}
                       >
-                        {w.label}
+                        {width.label}
                       </button>
                     ))}
                   </div>
