@@ -1,13 +1,13 @@
 # TIMELINE — TAKHTA ABU
 
-**Status:** Baseline canon; kronologi adegan novel belum dimulai.
+**Sumber pembaruan:** Bab 1 v1.
 
 ## Kronologi dunia (canon)
 | Waktu | Peristiwa |
 |---|---|
 | Era Pertama | Tujuh dewa membentuk Veyr |
 | Era Kedua | Manusia pertama mempelajari kekuatan ingatan |
-| Tahun 0 | The Silent Fall; tujuh dewa mengorbankan diri untuk mengurung The Nameless |
+| Tahun 0 | The Silent Fall |
 | Tahun 12 | Lonceng pertama dibangun |
 | Tahun 45 | Gereja Tujuh Lonceng berdiri |
 | Tahun 120 | Enam wilayah berada di bawah kendali gereja |
@@ -15,11 +15,9 @@
 | Tahun 300 | Kisah Arka dimulai |
 
 ## Kronologi naskah
-| Bab | Waktu dalam cerita | Lokasi | Peristiwa kunci | Sumber/versi |
-|---|---|---|---|---|
-| Belum ada | — | — | Naskah belum dimulai | — |
+| Bab | Waktu | Lokasi | Peristiwa |
+|---|---|---|---|
+| 1 v1 | Satu hari; tanggal rinci belum ditetapkan | Pemakaman Nareth, Petak Utara, mausoleum, jalan kota | Arka menemukan catatan makam tanpa nama, jasad identik, dan lonceng kecil; penjaga gereja datang; dentang diikuti anomali ingatan |
 
-## Aturan kontinuitas waktu
-- Catat jeda waktu, durasi perjalanan, waktu siang/malam, dan urutan adegan jika sudah ditetapkan.
-- Jangan membuat tanggal atau durasi baru tanpa dasar dalam naskah atau keputusan Author.
-- Pastikan karakter tidak berada di dua tempat pada waktu yang sama.
+## Kontinuitas waktu
+Waktu harian, tanggal, dan durasi perjalanan belum ditetapkan. Jangan menambahkan tanggal atau jeda spesifik tanpa dasar.
