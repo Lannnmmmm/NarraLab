@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Prose from "../components/Prose";
 
 const REPO = "Lannnmmmm/NarraLab";
@@ -88,6 +88,8 @@ export default function Review() {
       .catch((reason: unknown) => { if (!cancelled) setBody(`Gagal memuat naskah. ${reason instanceof Error ? reason.message : String(reason)}`); });
     return () => { cancelled = true; };
   }, [selected, files]);
+
+  useEffect(() => { setNoteDraft(selected ? notes[selected]?.note || "" : ""); }, [selected, notes]);
 
   const active = files.find((item) => item.path === selected);
   const activeNote = active ? notes[active.path] : undefined;
