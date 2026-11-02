@@ -48,6 +48,3 @@ export const hrefLibrary = () => "#/";
 
 export const hrefChapter = (number: number, version?: number | null) =>
   `#/bab/${number}${version ? `/v${version}` : ""}`;
-
-// Tetap diekspor agar file lama yang belum dihapus tidak memutus proses typecheck.
-export const hrefCanon = (id?: string | null) => `#/canon${id ? `/${id}` : ""}`;
