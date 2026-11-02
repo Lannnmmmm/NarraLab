@@ -65,3 +65,26 @@
 .ai-notice { margin:0; color:var(--final); font-size:.85rem; }
 .ai-footnote { margin:0; color:var(--muted); font-size:.8rem; line-height:1.6; }
 @media (max-width:680px) { .ai-flow { grid-template-columns:1fr; } .ai-stage { flex-direction:row; align-items:center; } }
+
+/* ---------- Review naskah ---------- */
+.review-workspace { display:grid; gap:1rem; }
+.review-heading,.review-document-head,.review-feedback-head { display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; }
+.review-heading h2,.review-document-head h2 { margin:0; font-family:var(--serif-font); font-size:1.7rem; }
+.review-heading p { margin:.35rem 0 0; }
+.review-layout { display:grid; grid-template-columns:220px minmax(0,1fr); gap:1rem; align-items:start; }
+.review-sidebar,.review-feedback { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:1rem; }
+.review-sidebar { display:grid; gap:.5rem; position:sticky; top:6rem; }
+.review-sidebar > .eyebrow { margin-bottom:.2rem; }
+.review-chapter { display:grid; grid-template-columns:1fr auto; gap:.15rem .5rem; padding:.7rem; text-align:left; border:1px solid var(--border); border-radius:9px; background:var(--bg); color:var(--text); font:inherit; cursor:pointer; }
+.review-chapter.active { border-color:var(--accent); background:var(--surface-2); }
+.review-chapter small { grid-column:1/-1; color:var(--muted); }
+.review-chapter strong { color:var(--accent); }
+.review-main { min-width:0; }
+.review-document-head { align-items:center; padding:1rem 0; border-bottom:1px solid var(--border); }
+.review-document-head a { font-size:.85rem; white-space:nowrap; }
+.review-prose { max-width:var(--measure); margin:1.5rem auto 2.5rem; padding:0 clamp(.25rem,2vw,1rem); }
+.review-prose .prose { font-size:clamp(1rem,var(--reader-size),1.25rem); }
+.review-feedback { display:grid; gap:.75rem; }
+.review-feedback h3 { margin:0; }
+.review-feedback textarea { width:100%; border:1px solid var(--border); border-radius:9px; padding:.8rem; background:var(--bg); color:var(--text); font:inherit; resize:vertical; }
+@media(max-width:720px) { .review-layout { grid-template-columns:1fr; } .review-sidebar { position:static; grid-template-columns:repeat(2,minmax(0,1fr)); } .review-sidebar > .eyebrow { grid-column:1/-1; } .review-document-head { align-items:flex-start; flex-direction:column; } }
