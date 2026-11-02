@@ -1,6 +1,6 @@
 # Novel
 
-Folder ini berisi naskah, satu folder per bab.
+Folder ini menyimpan naskah kerja. Setiap bab memiliki folder sendiri dan setiap revisi disimpan sebagai file versi baru.
 
 ```
 novel/
@@ -9,10 +9,17 @@ novel/
     v2.md
     ringkasan.md
   bab-02/
-    ...
+    v1.md
+    ringkasan.md
 ```
 
-Aturan:
-- Versi tertinggi (v2 mengalahkan v1) adalah versi aktif.
-- Versi lama tidak pernah ditimpa atau dihapus.
-- Detail format ada di [INSTRUKSI-GPT.md](../INSTRUKSI-GPT.md).
+## Aturan versi
+
+- Versi bernomor tertinggi adalah **versi kerja terbaru**.
+- Versi kerja terbaru tidak otomatis menjadi versi terbit.
+- Versi yang tampil di Public Reader hanya versi yang dipilih secara eksplisit di root `publication.json`.
+- File versi lama tidak boleh ditimpa atau dihapus.
+- File yang dipilih di `publication.json` wajib memiliki frontmatter `status: final`.
+- `ringkasan.md` mengikuti versi kerja terbaru dan dapat disertakan pada halaman baca jika bab tersebut diterbitkan.
+
+Format file dan alur revisi dijelaskan di [INSTRUKSI-GPT.md](../INSTRUKSI-GPT.md).
