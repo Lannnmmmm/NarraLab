@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import Header from "./components/Header";
+import NotFound from "./components/NotFound";
 import { useIndex } from "./data";
 import { formatDate } from "./format";
-import Canon from "./pages/Canon";
 import Library from "./pages/Library";
 import Reader from "./pages/Reader";
-import NotFound from "./components/NotFound";
 import { useRoute } from "./router";
-import { DEFAULT_PREFS, DEFAULT_READER, type Prefs, type ReaderSettings } from "./settings";
+import { DEFAULT_READER, type ReaderSettings } from "./settings";
 import { usePersistentState } from "./storage";
 import { useTheme } from "./theme";
 
@@ -15,7 +14,6 @@ export default function App() {
   const route = useRoute();
   const [theme, setTheme] = useTheme();
   const [reader, setReader] = usePersistentState<ReaderSettings>("narralab:reader", DEFAULT_READER);
-  const [prefs, setPrefs] = usePersistentState<Prefs>("narralab:prefs", DEFAULT_PREFS);
   const index = useIndex();
 
   useEffect(() => {
@@ -43,19 +41,11 @@ export default function App() {
           </div>
         )}
 
-        {index.status === "ready" && route.page === "library" && (
-          <Library
-            index={index.data}
-            finalOnly={prefs.finalOnly}
-            onFinalOnly={(finalOnly) => setPrefs({ ...prefs, finalOnly })}
-          />
-        )}
+        {index.status === "ready" && route.page === "library" && <Library index={index.data} />}
 
         {index.status === "ready" && route.page === "chapter" && (
-          <Reader index={index.data} number={route.number} version={route.version} finalOnly={prefs.finalOnly} />
+          <Reader index={index.data} number={route.number} version={route.version} />
         )}
-
-        {index.status === "ready" && route.page === "canon" && <Canon index={index.data} id={route.id} />}
 
         {index.status === "ready" && route.page === "notfound" && (
           <NotFound message="Alamat yang Anda buka tidak dikenali." />
