@@ -10,7 +10,7 @@ Aplikasi React, TypeScript, dan Vite yang berisi dua permukaan: Production Works
 - Data belum disinkronkan ke GitHub atau perangkat lain.
 - Jangan menyimpan data rahasia pada repository public. LocalStorage tetap berada di browser lokal, tetapi bukan backup yang tahan kehilangan perangkat/browser.
 
-## Public Reader
+## AI Production Pipeline\n\n- Tab **Studio AI** menyediakan Story Architect, Novel Writer, dan AI Editor.\n- Prompt dibangun dari data Story Development dan Character Bible yang ada di browser.\n- Pemilik mengirim prompt ke ChatGPT/AI secara manual, lalu menempelkan hasilnya kembali.\n- Hasil dan prompt disimpan sementara di localStorage; hasil dapat diekspor sebagai Markdown.\n- Tidak ada integrasi API/model otomatis, pembacaan Canon dari GitHub, atau commit naskah otomatis pada tahap ini.\n- AI output tetap draf/usulan sampai Author meninjau dan menyetujui.\n\n## Public Reader
 
 Public Reader hanya menampilkan bab yang secara eksplisit dipilih pemilik melalui root `publication.json`. Folder `canon/`, draft, dan versi revisi tidak disalin ke hasil build publik.
 
