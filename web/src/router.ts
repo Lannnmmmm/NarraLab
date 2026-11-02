@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 export type Route =
   | { page: "library" }
+  | { page: "studio" }
   | { page: "chapter"; number: number; version: number | null }
   | { page: "notfound" };
 
@@ -21,6 +22,7 @@ export function parseHash(hash: string): Route {
     });
 
   if (parts.length === 0) return { page: "library" };
+  if (parts[0] === "studio" && parts.length === 1) return { page: "studio" };
 
   if (parts[0] === "bab") {
     const number = Number(parts[1]);
@@ -45,6 +47,7 @@ export function useRoute(): Route {
 }
 
 export const hrefLibrary = () => "#/";
+export const hrefStudio = () => "#/studio";
 
 export const hrefChapter = (number: number, version?: number | null) =>
   `#/bab/${number}${version ? `/v${version}` : ""}`;
