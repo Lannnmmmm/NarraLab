@@ -7,7 +7,7 @@ NarraLab adalah workspace pribadi untuk mengembangkan, menulis, memeriksa, merev
 
 ## Modul saat ini
 
-- **Production Workspace** — dashboard, pengembangan cerita, dan Character Bible tahap awal.
+- **Production Workspace** — dashboard, pengembangan cerita, dan Character Bible tahap awal.\n- **AI Production Pipeline** — Story Architect, Novel Writer, dan AI Editor dengan alur manual copy-paste tanpa API berbayar.
 - **Public Reader** — pembaca publik yang hanya menampilkan bab yang dipilih secara eksplisit melalui `publication.json`.
 - **Canon & manuscript repository** — dokumen cerita, naskah, dan riwayat versi tetap disimpan sebagai file Markdown.
 
@@ -38,7 +38,7 @@ Buka menu **Workspace** pada situs. Modul yang tersedia:
 
 **Penyimpanan tahap ini bersifat local-first:** data disimpan di localStorage browser yang digunakan dan dapat diekspor sebagai JSON backup. Data ini belum otomatis tersinkron ke GitHub atau perangkat lain. Jangan menganggap localStorage sebagai satu-satunya backup.
 
-## Cara menerbitkan bab
+## Alur AI Production Pipeline\n\n1. Author memberi ide atau arahan kepada Story Architect.\n2. AI mengembangkan premis, konflik, karakter, dan struktur; Author menyetujui Canon.\n3. Novel Writer menerima Chapter Plan dan konteks, lalu menghasilkan draf.\n4. AI Editor memeriksa kualitas dan kontinuitas.\n5. Author menyetujui hasil; draf disimpan sebagai versi baru.\n\nStudio AI saat ini menyiapkan prompt dan menerima hasil melalui copy-paste. Tidak ada panggilan model otomatis atau sinkronisasi naskah ke GitHub. Hasil disimpan sementara di browser dan dapat diekspor sebagai Markdown.\n\n## Cara menerbitkan bab
 
 Public Reader **tidak otomatis menampilkan versi terbaru**. Pemilik harus memilih versi final secara eksplisit di `publication.json`. File versi yang dipilih wajib memiliki frontmatter `status: final`.
 
