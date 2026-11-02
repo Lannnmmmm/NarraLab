@@ -1,10 +1,5 @@
-// Memindai ../novel dan ../canon, lalu menulis web/public/content/:
-//   - index.json : daftar bab, versi tertinggi tiap bab, riwayat versi, dokumen canon
-//   - salinan file Markdown (tanpa frontmatter) yang dibaca aplikasi saat runtime
-//
-// Variabel lingkungan opsional (dipakai untuk pengujian):
-//   NARRALAB_ROOT = folder yang berisi novel/ dan canon/ (default: root repo)
-//   NARRALAB_OUT  = folder tujuan (default: web/public/content)
+// Build public reader content from the explicit publication manifest.
+// Drafts, revision history, and Canon documents are not copied to the public site.
 
 import { promises as fs } from "node:fs";
 import path from "node:path";
@@ -14,15 +9,9 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(process.env.NARRALAB_ROOT ?? path.join(here, "..", ".."));
 const OUT = path.resolve(process.env.NARRALAB_OUT ?? path.join(here, "..", "public", "content"));
 
-const STATUSES = new Set(["draf", "direvisi", "final"]);
-const CANON_ORDER = ["premis", "dunia", "karakter", "plot", "gaya", "status-objek", "timeline"];
-
-const warnings = [];
-const warn = (msg) => warnings.push(msg);
-
-async function exists(p) {
+async function exists(file) {
   try {
-    await fs.access(p);
+    await fs.access(file);
     return true;
   } catch {
     return false;
@@ -30,153 +19,138 @@ async function exists(p) {
 }
 
 function parseFrontmatter(raw) {
-  const text = raw.replace(/^﻿/, "").replace(/\r\n/g, "\n");
-  const m = text.match(/^---\n([\s\S]*?)\n---[ \t]*(?:\n|$)/);
-  if (!m) return { meta: {}, body: text };
+  const text = raw.replace(/^\uFEFF/, "").replace(/\r\n/g, "\n");
+  const match = text.match(/^---\n([\s\S]*?)\n---[ \t]*(?:\n|$)/);
+  if (!match) return { meta: {}, body: text };
+
   const meta = {};
-  for (const line of m[1].split("\n")) {
-    const i = line.indexOf(":");
-    if (i === -1) continue;
-    const key = line.slice(0, i).trim();
-    let val = line.slice(i + 1).trim();
+  for (const line of match[1].split("\n")) {
+    const separator = line.indexOf(":");
+    if (separator === -1) continue;
+    const key = line.slice(0, separator).trim();
+    let value = line.slice(separator + 1).trim();
     if (
-      val.length >= 2 &&
-      ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'")))
+      value.length >= 2 &&
+      ((value.startsWith('"') && value.endsWith('"')) ||
+        (value.startsWith("'") && value.endsWith("'")))
     ) {
-      val = val.slice(1, -1);
+      value = value.slice(1, -1);
     }
-    if (key) meta[key] = val;
+    if (key) meta[key] = value;
   }
-  return { meta, body: text.slice(m[0].length) };
+  return { meta, body: text.slice(match[0].length) };
 }
 
 function countWords(body) {
-  const clean = body.replace(/^\s*(\*\*\*|---|___)\s*$/gm, "");
-  return clean.trim().split(/\s+/).filter(Boolean).length;
+  return body
+    .replace(/^\s*(\*\*\*|---|___)\s*$/gm, "")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean).length;
 }
 
-function firstHeading(body, fallback) {
-  const m = body.match(/^#\s+(.+)$/m);
-  return m ? m[1].trim() : fallback;
-}
-
-async function copyBody(srcFile, destRel) {
-  const raw = await fs.readFile(srcFile, "utf8");
+async function copyPublishedFile(source, destination) {
+  const raw = await fs.readFile(source, "utf8");
   const { meta, body } = parseFrontmatter(raw);
-  const dest = path.join(OUT, destRel);
-  await fs.mkdir(path.dirname(dest), { recursive: true });
-  await fs.writeFile(dest, body.replace(/^\n+/, ""), "utf8");
+  const target = path.join(OUT, destination);
+  await fs.mkdir(path.dirname(target), { recursive: true });
+  await fs.writeFile(target, body.replace(/^\n+/, ""), "utf8");
   return { meta, body };
 }
 
-async function buildChapters() {
-  const novelDir = path.join(ROOT, "novel");
-  if (!(await exists(novelDir))) return [];
-
-  const entries = await fs.readdir(novelDir, { withFileTypes: true });
-  const dirs = entries
-    .filter((d) => d.isDirectory() && /^bab-\d+$/.test(d.name))
-    .map((d) => d.name)
-    .sort((a, b) => Number(a.slice(4)) - Number(b.slice(4)));
-
-  const chapters = [];
-  for (const dir of dirs) {
-    const number = Number(dir.slice(4));
-    const files = await fs.readdir(path.join(novelDir, dir));
-    const versionNumbers = files
-      .map((f) => f.match(/^v(\d+)\.md$/))
-      .filter(Boolean)
-      .map((m) => Number(m[1]))
-      .sort((a, b) => a - b);
-
-    if (versionNumbers.length === 0) {
-      warn(`${dir}: tidak ada file vN.md, dilewati`);
-      continue;
-    }
-
-    const versions = [];
-    for (const v of versionNumbers) {
-      const rel = `novel/${dir}/v${v}.md`;
-      const { meta, body } = await copyBody(path.join(novelDir, dir, `v${v}.md`), rel);
-      let status = meta.status;
-      if (!STATUSES.has(status)) {
-        if (status) warn(`${rel}: status "${status}" tidak dikenal, dianggap "draf"`);
-        status = "draf";
-      }
-      versions.push({
-        version: v,
-        status,
-        title: meta.judul || "",
-        date: meta.tanggal || "",
-        note: meta.catatan_revisi || "",
-        words: countWords(body),
-        path: `content/${rel}`,
-      });
-    }
-
-    let summaryPath = null;
-    if (files.includes("ringkasan.md")) {
-      const rel = `novel/${dir}/ringkasan.md`;
-      await copyBody(path.join(novelDir, dir, "ringkasan.md"), rel);
-      summaryPath = `content/${rel}`;
-    }
-
-    const latest = versions[versions.length - 1];
-    if (!latest.title) warn(`${dir}/v${latest.version}.md: frontmatter "judul" kosong`);
-    chapters.push({
-      id: dir,
-      number,
-      title: latest.title || `Bab ${number}`,
-      status: latest.status,
-      latestVersion: latest.version,
-      words: latest.words,
-      date: latest.date,
-      summaryPath,
-      versions: versions.map(({ title: _title, ...rest }) => rest),
-    });
+async function readPublicationManifest() {
+  const manifestPath = path.join(ROOT, "publication.json");
+  if (!(await exists(manifestPath))) {
+    throw new Error("publication.json tidak ditemukan. Buat manifest sebelum melakukan build.");
   }
-  return chapters;
+
+  const manifest = JSON.parse(await fs.readFile(manifestPath, "utf8"));
+  if (!manifest || typeof manifest.chapters !== "object" || Array.isArray(manifest.chapters)) {
+    throw new Error('Format publication.json tidak valid. Gunakan properti "chapters" berbentuk object.');
+  }
+
+  for (const [chapterId, version] of Object.entries(manifest.chapters)) {
+    if (!/^bab-\d+$/.test(chapterId) || !Number.isInteger(version) || version < 1) {
+      throw new Error(`Entri publikasi tidak valid: ${chapterId} = ${version}`);
+    }
+  }
+
+  return manifest.chapters;
 }
 
-async function buildCanon() {
-  const canonDir = path.join(ROOT, "canon");
-  if (!(await exists(canonDir))) return [];
+async function buildPublishedChapters(publication) {
+  const novelDir = path.join(ROOT, "novel");
+  const chapters = [];
 
-  const names = (await fs.readdir(canonDir))
-    .filter((f) => f.endsWith(".md") && f.toLowerCase() !== "readme.md")
-    .map((f) => f.slice(0, -3));
-  const ordered = [
-    ...CANON_ORDER.filter((n) => names.includes(n)),
-    ...names.filter((n) => !CANON_ORDER.includes(n)).sort(),
-  ];
+  for (const [id, version] of Object.entries(publication).sort(([a], [b]) =>
+    a.localeCompare(b, "en", { numeric: true }),
+  )) {
+    const chapterDir = path.join(novelDir, id);
+    const source = path.join(chapterDir, `v${version}.md`);
 
-  const docs = [];
-  for (const id of ordered) {
-    const rel = `canon/${id}.md`;
-    const { body } = await copyBody(path.join(canonDir, `${id}.md`), rel);
-    docs.push({ id, title: firstHeading(body, id), path: `content/${rel}` });
+    if (!(await exists(source))) {
+      throw new Error(`Versi terbit tidak ditemukan: novel/${id}/v${version}.md`);
+    }
+
+    const relativePath = `novel/${id}/v${version}.md`;
+    const { meta, body } = await copyPublishedFile(source, `content/${relativePath}`);
+
+    if (meta.status !== "final") {
+      throw new Error(
+        `Versi ${relativePath} belum berstatus "final". Hanya versi final yang boleh diterbitkan.`,
+      );
+    }
+
+    const number = Number(id.slice(4));
+    const summarySource = path.join(chapterDir, "ringkasan.md");
+    let summaryPath = null;
+
+    if (await exists(summarySource)) {
+      await copyPublishedFile(summarySource, `content/novel/${id}/ringkasan.md`);
+      summaryPath = `content/novel/${id}/ringkasan.md`;
+    }
+
+    chapters.push({
+      id,
+      number,
+      title: meta.judul || `Bab ${number}`,
+      status: "final",
+      latestVersion: version,
+      words: countWords(body),
+      date: meta.tanggal || "",
+      summaryPath,
+      versions: [
+        {
+          version,
+          status: "final",
+          date: meta.tanggal || "",
+          note: meta.catatan_revisi || "",
+          words: countWords(body),
+          path: `content/${relativePath}`,
+        },
+      ],
+    });
   }
-  return docs;
+
+  return chapters;
 }
 
 async function main() {
   await fs.rm(OUT, { recursive: true, force: true });
   await fs.mkdir(OUT, { recursive: true });
 
-  const chapters = await buildChapters();
-  const canon = await buildCanon();
-  const totalWords = chapters.reduce((sum, c) => sum + c.words, 0);
+  const publication = await readPublicationManifest();
+  const chapters = await buildPublishedChapters(publication);
+  const totalWords = chapters.reduce((sum, chapter) => sum + chapter.words, 0);
+  const index = { generatedAt: new Date().toISOString(), chapters, totalWords };
 
-  const index = { generatedAt: new Date().toISOString(), chapters, canon, totalWords };
   await fs.writeFile(path.join(OUT, "index.json"), JSON.stringify(index, null, 2), "utf8");
-
   console.log(
-    `[narralab] ${chapters.length} bab, ${canon.length} dokumen canon, ${totalWords} kata -> ${OUT}`,
+    `[narralab] ${chapters.length} bab terbit, ${totalWords} kata -> ${OUT}`,
   );
-  for (const w of warnings) console.warn(`[narralab] peringatan: ${w}`);
 }
 
-main().catch((err) => {
-  console.error(err);
+main().catch((error) => {
+  console.error(`[narralab] build gagal: ${error.message}`);
   process.exit(1);
 });
