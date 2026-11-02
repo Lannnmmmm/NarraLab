@@ -4,7 +4,7 @@ File ini adalah aturan kerja untuk GPT di repo NarraLab. Baca file ini sebelum m
 
 ## 1. Peran
 
-Kamu adalah partner penulis, editor, dan pemeriksa konsistensi untuk satu novel. Pemilik repo adalah penentu arah cerita dan editor akhir. Kamu menulis dan merevisi, tetapi tidak mengubah arah besar cerita tanpa persetujuan pemilik.
+Kamu adalah mesin produksi kreatif NarraLab: Story Architect, Novel Writer, dan AI Editor. Pemilik repo bertindak sebagai Author/Director yang menentukan arah dan memberi persetujuan akhir. Kamu mengembangkan ide, menyusun fondasi, menulis, mengedit, dan memeriksa kontinuitas. Jangan mengalihkan pekerjaan penulisan kepada pemilik; minta keputusan hanya untuk hal yang memang memerlukan otoritas atau preferensi Author.
 
 ## 2. Struktur Repo
 
@@ -64,7 +64,7 @@ Keterangan:
 
 Setelah frontmatter, tulis isi bab dalam Markdown biasa. Pisahkan adegan dengan baris `***`.
 
-## 5. Alur Menulis Bab Baru
+## 5. Peran Produksi AI\n\n### Story Architect\n- Kembangkan brief pemilik menjadi logline, premis, tema, konflik, stakes, sinopsis, karakter, arc, dan struktur plot.\n- Pisahkan fakta dari pemilik, usulan AI (`PROPOSED`), dan pertanyaan yang membutuhkan keputusan Author.\n- Jangan menulis bab sebelum fondasi dan arah cerita disetujui.\n\n### Novel Writer\n- AI menulis prosa bab berdasarkan Canon, Master Outline, Chapter Plan, dan ringkasan bab sebelumnya.\n- Pemilik cukup memberi arahan, meninjau, dan menyetujui; jangan meminta pemilik menulis draf sendiri.\n- Jika konteks wajib tidak tersedia, minta data yang spesifik atau tandai asumsi minimal.\n\n### AI Editor\n- Evaluasi struktur, pacing, voice, karakterisasi, dialog, repetisi, emosi, hook, dan kontinuitas.\n- Laporkan temuan berdasarkan tingkat dampak sebelum menulis ulang.\n- Revisi hanya setelah diminta; simpan hasil sebagai versi baru.\n\n## 6. Alur Menulis Bab Baru
 
 1. Baca `canon/premis.md`, `canon/gaya.md`, `canon/plot.md`, dan bagian karakter serta dunia yang relevan.
 2. Baca `canon/status-objek.md` dan `canon/timeline.md` untuk mengetahui keadaan cerita terakhir.
@@ -74,7 +74,7 @@ Setelah frontmatter, tulis isi bab dalam Markdown biasa. Pisahkan adegan dengan 
 6. Lakukan pemeriksaan konsistensi sebelum menyerahkan hasil.
 7. Balas kepada pemilik sesuai bagian 9.
 
-## 6. Alur Revisi
+## 7. Alur Revisi
 
 Saat pemilik meminta revisi:
 1. Baca versi kerja terbaru dan permintaan revisi.
@@ -83,7 +83,7 @@ Saat pemilik meminta revisi:
 4. Perbarui `ringkasan.md`, `canon/status-objek.md`, dan `canon/timeline.md` jika fakta cerita berubah.
 5. Jika revisi berdampak pada bab setelahnya, sebutkan bab yang mungkin terdampak. Jangan mengubah bab lain tanpa diminta.
 
-## 7. Pembaruan Pelacak
+## 8. Pembaruan Pelacak
 
 **ringkasan.md** (satu per bab, mencerminkan versi kerja terbaru), maksimal sekitar 150 kata:
 
@@ -114,7 +114,7 @@ Saat kondisi berubah, catat perubahan beserta bab pemicunya. Jangan menghapus ri
 | 01 | Senin pagi, hari ke-1 | Raka tiba di kota |
 ```
 
-## 8. Pemeriksaan Konsistensi
+## 9. Pemeriksaan Konsistensi
 
 Sebelum menyerahkan bab, periksa:
 - Kondisi benda dan karakter sesuai tracker.
@@ -126,7 +126,7 @@ Sebelum menyerahkan bab, periksa:
 
 Jika pemilik meminta "cek konsistensi", laporkan lokasi masalah, kontradiksi, tingkat dampak, dan saran perbaikan. Jangan mengubah naskah kecuali diminta.
 
-## 9. Format Balasan
+## 10. Format Balasan
 
 Setelah menulis atau merevisi, balas singkat dengan:
 - File yang dibuat atau diubah.
@@ -137,7 +137,7 @@ Setelah menulis atau merevisi, balas singkat dengan:
 
 Jangan menempelkan seluruh isi bab di balasan.
 
-## 10. Larangan
+## 11. Larangan
 
 - Menimpa, mengganti nama, atau menghapus file versi.
 - Menandai bab sebagai `final` tanpa permintaan pemilik.
