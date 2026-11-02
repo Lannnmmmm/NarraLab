@@ -7,7 +7,7 @@ import {
   type ReadingFont,
   type ReadingWidth,
 } from "../settings";
-import { hrefLibrary } from "../router";
+import { hrefLibrary, hrefStudio } from "../router";
 import type { ThemePref } from "../theme";
 import { AutoIcon, MoonIcon, SunIcon, TextIcon } from "./Icons";
 
@@ -65,9 +65,8 @@ export default function Header({ page, theme, onTheme, reader, onReader }: Heade
         </a>
 
         <nav className="site-nav" aria-label="Navigasi utama">
-          <a href={hrefLibrary()} aria-current={page === "library" || page === "chapter" ? "page" : undefined}>
-            Novel
-          </a>
+          <a href={hrefStudio()} aria-current={page === "studio" ? "page" : undefined}>Workspace</a>
+          <a href={hrefLibrary()} aria-current={page === "library" || page === "chapter" ? "page" : undefined}>Novel</a>
         </nav>
 
         <div className="header-tools">
@@ -103,14 +102,8 @@ export default function Header({ page, theme, onTheme, reader, onReader }: Heade
                   <span className="field-label">Jenis huruf</span>
                   <div className="segmented" role="group" aria-label="Jenis huruf">
                     {FONTS.map((font) => (
-                      <button
-                        key={font.id}
-                        type="button"
-                        aria-pressed={reader.font === font.id}
-                        onClick={() => onReader({ ...reader, font: font.id })}
-                      >
-                        {font.label}
-                      </button>
+                      <button key={font.id} type="button" aria-pressed={reader.font === font.id}
+                        onClick={() => onReader({ ...reader, font: font.id })}>{font.label}</button>
                     ))}
                   </div>
                 </div>
@@ -119,14 +112,8 @@ export default function Header({ page, theme, onTheme, reader, onReader }: Heade
                   <span className="field-label">Lebar teks</span>
                   <div className="segmented" role="group" aria-label="Lebar teks">
                     {WIDTHS.map((width) => (
-                      <button
-                        key={width.id}
-                        type="button"
-                        aria-pressed={reader.width === width.id}
-                        onClick={() => onReader({ ...reader, width: width.id })}
-                      >
-                        {width.label}
-                      </button>
+                      <button key={width.id} type="button" aria-pressed={reader.width === width.id}
+                        onClick={() => onReader({ ...reader, width: width.id })}>{width.label}</button>
                     ))}
                   </div>
                 </div>
@@ -140,16 +127,8 @@ export default function Header({ page, theme, onTheme, reader, onReader }: Heade
 
           <div className="segmented segmented-icons" role="group" aria-label="Tema tampilan">
             {THEMES.map(({ id, label, Icon }) => (
-              <button
-                key={id}
-                type="button"
-                aria-label={label}
-                title={label}
-                aria-pressed={theme === id}
-                onClick={() => onTheme(id)}
-              >
-                <Icon />
-              </button>
+              <button key={id} type="button" aria-label={label} title={label} aria-pressed={theme === id}
+                onClick={() => onTheme(id)}><Icon /></button>
             ))}
           </div>
         </div>
