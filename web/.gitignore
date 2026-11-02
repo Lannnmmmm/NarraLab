@@ -1,0 +1,4 @@
+node_modules
+dist
+# Dihasilkan otomatis oleh scripts/build-index.mjs dari ../novel dan ../canon
+public/content
