@@ -5,6 +5,7 @@ import { useIndex } from "./data";
 import { formatDate } from "./format";
 import Library from "./pages/Library";
 import Reader from "./pages/Reader";
+import Studio from "./pages/Studio";
 import { useRoute } from "./router";
 import { DEFAULT_READER, type ReaderSettings } from "./settings";
 import { usePersistentState } from "./storage";
@@ -28,9 +29,11 @@ export default function App() {
       <Header page={route.page} theme={theme} onTheme={setTheme} reader={reader} onReader={setReader} />
 
       <main className="main">
-        {index.status === "loading" && <p className="state muted">Memuat naskah…</p>}
+        {route.page === "studio" && <Studio />}
 
-        {index.status === "error" && (
+        {route.page !== "studio" && index.status === "loading" && <p className="state muted">Memuat naskah…</p>}
+
+        {route.page !== "studio" && index.status === "error" && (
           <div className="state">
             <h1>Naskah belum bisa dimuat</h1>
             <p>
@@ -52,11 +55,12 @@ export default function App() {
         )}
       </main>
 
-      {index.status === "ready" && (
+      {route.page !== "studio" && index.status === "ready" && (
         <footer className="site-footer">
           NarraLab · diperbarui {formatDate(index.data.generatedAt.slice(0, 10))}
         </footer>
       )}
+      {route.page === "studio" && <footer className="site-footer">NarraLab · Production Workspace</footer>}
     </>
   );
 }
