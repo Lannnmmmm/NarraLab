@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 type Story = {
   title: string; genre: string; audience: string; premise: string; synopsis: string; tone: string; targetWords: number;
