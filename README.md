@@ -3,7 +3,13 @@
 
 **From an idea to a story worth reading.**
 
-NarraLab adalah workspace pribadi untuk mengembangkan, menulis, memeriksa, merevisi, dan menyiapkan novel dengan bantuan AI. Repository ini berisi sistem kerja novel, data cerita, dan aplikasi pembaca publik.
+NarraLab adalah workspace pribadi untuk mengembangkan, menulis, memeriksa, merevisi, dan menyiapkan novel dengan bantuan AI.
+
+## Modul saat ini
+
+- **Production Workspace** — dashboard, pengembangan cerita, dan Character Bible tahap awal.
+- **Public Reader** — pembaca publik yang hanya menampilkan bab yang dipilih secara eksplisit melalui `publication.json`.
+- **Canon & manuscript repository** — dokumen cerita, naskah, dan riwayat versi tetap disimpan sebagai file Markdown.
 
 ## Prinsip utama
 
@@ -20,27 +26,21 @@ NarraLab adalah workspace pribadi untuk mengembangkan, menulis, memeriksa, merev
 - `canon/` — dokumen internal cerita: premis, dunia, karakter, plot, gaya, timeline, dan status objek.
 - `novel/` — naskah per bab dan riwayat versinya.
 - `publication.json` — daftar versi final yang dipilih untuk ditampilkan di Public Reader.
-- `web/` — aplikasi pembaca berbasis React, TypeScript, dan Vite.
+- `web/` — aplikasi React, TypeScript, dan Vite untuk workspace serta pembaca publik.
 - `.github/workflows/deploy.yml` — pemeriksaan tipe, build, dan deployment ke GitHub Pages.
+
+## Production Workspace tahap awal
+
+Buka menu **Workspace** pada situs. Modul yang tersedia:
+- Ringkasan proyek dan progres pengisian fondasi cerita.
+- Story Development: judul, genre, target pembaca, premis, sinopsis, tone, dan target kata.
+- Character Bible dasar: nama, peran, tujuan, konflik/ketakutan, sifat dan ciri khas.
+
+**Penyimpanan tahap ini bersifat local-first:** data disimpan di localStorage browser yang digunakan dan dapat diekspor sebagai JSON backup. Data ini belum otomatis tersinkron ke GitHub atau perangkat lain. Jangan menganggap localStorage sebagai satu-satunya backup.
 
 ## Cara menerbitkan bab
 
-Public Reader **tidak otomatis menampilkan versi terbaru**. Pemilik harus memilih versi final secara eksplisit di `publication.json`.
-
-Contoh:
-
-```json
-{
-  "chapters": {
-    "bab-01": 2,
-    "bab-02": 1
-  }
-}
-```
-
-Artinya Bab 1 menerbitkan `novel/bab-01/v2.md` dan Bab 2 menerbitkan `novel/bab-02/v1.md`. File versi yang dipilih wajib memiliki frontmatter `status: final`. Jika versi tidak ditemukan atau belum final, proses build akan gagal agar naskah yang salah tidak terbit.
-
-Untuk menarik bab dari situs, hapus entri bab tersebut dari `publication.json`.
+Public Reader **tidak otomatis menampilkan versi terbaru**. Pemilik harus memilih versi final secara eksplisit di `publication.json`. File versi yang dipilih wajib memiliki frontmatter `status: final`.
 
 ## Alur AI tanpa API berbayar
 
@@ -51,8 +51,6 @@ Untuk menarik bab dari situs, hapus entri bab tersebut dari `publication.json`.
 5. Pemilik menyetujui versi dengan status `final`.
 6. Pemilik memilih versi itu di `publication.json` jika siap diterbitkan.
 
-## Batasan keamanan dan publikasi
+## Batasan keamanan dan privasi
 
-Repository ini bersifat **public**. Semua file yang di-commit, termasuk draft, Canon, dan riwayat revisi, dapat dibaca melalui GitHub. Manifest publikasi hanya mengatur apa yang disalin ke situs GitHub Pages; manifest **bukan** sistem privasi untuk menyembunyikan file di repository.
-
-Jika naskah atau catatan harus benar-benar rahasia, simpan di repository private atau lokasi lokal yang tidak dipublikasikan.
+Repository ini bersifat **public**. Semua file yang di-commit, termasuk draft, Canon, dan riwayat revisi, dapat dibaca melalui GitHub. Manifest publikasi hanya mengatur apa yang disalin ke situs GitHub Pages; manifest **bukan** sistem privasi untuk menyembunyikan file di repository. Jika naskah atau catatan harus benar-benar rahasia, simpan di repository private atau lokasi lokal yang tidak dipublikasikan.
