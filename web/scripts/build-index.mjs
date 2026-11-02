@@ -1,5 +1,5 @@
 // Build public reader content from the explicit publication manifest.
-// Drafts, revision history, and Canon documents are not copied to the public site.
+// Only owner-selected final chapters and their optional summaries are copied.
 
 import { promises as fs } from "node:fs";
 import path from "node:path";
@@ -142,7 +142,7 @@ async function main() {
   const publication = await readPublicationManifest();
   const chapters = await buildPublishedChapters(publication);
   const totalWords = chapters.reduce((sum, chapter) => sum + chapter.words, 0);
-  const index = { generatedAt: new Date().toISOString(), chapters, canon: [], totalWords };
+  const index = { generatedAt: new Date().toISOString(), chapters, totalWords };
 
   await fs.writeFile(path.join(OUT, "index.json"), JSON.stringify(index, null, 2), "utf8");
   console.log(
