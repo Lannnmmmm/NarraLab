@@ -65,7 +65,7 @@ async function readPublicationManifest() {
   }
 
   const manifest = JSON.parse(await fs.readFile(manifestPath, "utf8"));
-  if (!manifest || typeof manifest.chapters !== "object" || Array.isArray(manifest.chapters)) {
+  if (!manifest || !manifest.chapters || typeof manifest.chapters !== "object" || Array.isArray(manifest.chapters)) {
     throw new Error('Format publication.json tidak valid. Gunakan properti "chapters" berbentuk object.');
   }
 
