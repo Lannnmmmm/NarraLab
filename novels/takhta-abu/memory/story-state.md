@@ -1,33 +1,36 @@
 # STORY STATE — TAKHTA ABU
 
-**Status naskah:** Belum ada bab ditulis  
-**Posisi cerita:** Sebelum Bab 1  
-**Sumber:** Story Foundation v1.0  
-**Pembaruan:** 2026-11-02
-
-## Premis aktif
-Tiga ratus tahun setelah The Silent Fall, lonceng suci melindungi manusia dengan menghapus ingatan dan menyalurkannya ke segel di bawah Edrath. Proses itu justru memperkuat The Nameless.
+**Status naskah:** Bab 1 v1 selesai ditulis; masih draf.
+**Posisi cerita:** Setelah Bab 1.
+**Sumber:** Bab 1 v1; Story Foundation v1.0.
 
 ## Posisi plot
-- Arc aktif: Belum dimulai — Arc I: Lonceng yang Terakhir.
-- Bab terakhir selesai: Belum ada.
-- Adegan terakhir: Belum ada.
-- Tujuan dramatik berikutnya: Membuka Bab 1 dengan penemuan makam berisi jasad identik Arka dan lonceng kecil.
-- Lokasi cerita: Belum dimulai.
+- Arc aktif: Arc I — Lonceng yang Terakhir.
+- Bab terakhir: Bab 1, v1.
+- Adegan terakhir: Arka meninggalkan pemakaman Nareth dengan lonceng kecil.
+- Tujuan bab berikutnya (rencana): Menindaklanjuti konsekuensi penemuan makam dan keberadaan lonceng; jangan tetapkan respons Arka sebelum chapter plan disusun.
+- Lokasi terakhir: Jalan keluar pemakaman Nareth.
 
 ## Fakta canon
-- Dunia bernama Veyr, tiga abad setelah The Silent Fall.
+- Dunia Veyr, tiga abad setelah The Silent Fall.
 - Tujuh menara lonceng menjadi perlindungan manusia.
-- Dentang lonceng menghapus ingatan dan menyalurkannya ke segel di bawah Edrath.
 - Kekuatan supernatural dibayar dengan ingatan.
 - The Nameless adalah akumulasi kesadaran/ingatan manusia pertama.
 - Ending direncanakan tragis dengan konsekuensi permanen.
 
+## Established in story — Bab 1 v1
+- Arka bekerja sebagai penjaga makam di Nareth.
+- Catatan pekerjaan mencantumkan makam tanpa nama di Petak Utara, baris ketujuh, lalu baris itu menjadi kosong setelah dentang.
+- Di mausoleum Petak Utara terdapat jasad dengan wajah dan bekas luka identik Arka.
+- Di peti terdapat lonceng kecil dengan lambang tujuh garis; Arka mengambilnya.
+- Dua penjaga berlambang Gereja datang mencari peti/lonceng.
+- Setelah dentang menara, para penjaga kehilangan kejelasan tentang tujuan pencarian.
+- Arka melihat seorang perempuan menangis di depan kursi kosong tanpa mengetahui sebabnya. Hubungan kejadian ini dengan dentang belum dipastikan.
+
 ## Konflik aktif
-- Konflik utama: Mengungkap kebenaran sistem lonceng dan menentukan apakah sistem itu harus dipertahankan.
-- Ancaman awal: Arka diburu gereja setelah menemukan makam dan lonceng.
-- Konflik institusional: Gereja percaya sistem itu mencegah kepunahan manusia.
-- Risiko akhir: Menghancurkan sistem dapat mengembalikan ingatan secara tak terkendali dan meruntuhkan perlindungan.
+- Arka membawa benda yang dilarang Gereja.
+- Keberadaan jasad identik dan perubahan catatan mengancam identitas serta keselamatan Arka.
+- Mekanisme dan cakupan efek dentang belum diketahui.
 
 ## Belum boleh diasumsikan
-Mekanisme segel ketujuh; hubungan Arka dengan jasad identik; identitas dan peran spesifik ibu Arka; lokasi rinci menara; mekanisme penghapusan/pengembalian ingatan; sebab Elara kehilangan ingatan tentang Arka.
+Mekanisme segel ketujuh; hubungan Arka dengan jasad; identitas ibu Arka; lokasi rinci menara; mekanisme lengkap penghapusan/pengembalian ingatan; sebab Elara kehilangan ingatan tentang Arka.
