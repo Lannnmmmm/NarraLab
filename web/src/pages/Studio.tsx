@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import "../studio.css";
+import AiPipeline from "../components/AiPipeline";
 
 type Character = {
   id: string;
@@ -44,7 +45,7 @@ function loadWorkspace(): Workspace {
 
 export default function Studio() {
   const [workspace, setWorkspace] = useState<Workspace>(loadWorkspace);
-  const [tab, setTab] = useState<"overview" | "story" | "characters">("overview");
+  const [tab, setTab] = useState<"overview" | "story" | "characters" | "ai">("overview");
   const [editing, setEditing] = useState<Character | null>(null);
   const [saved, setSaved] = useState(true);
 
@@ -102,12 +103,14 @@ export default function Studio() {
       </div>
 
       <nav className="studio-tabs" aria-label="Modul workspace">
-        {(["overview", "story", "characters"] as const).map((item) => (
+        {(["overview", "story", "characters", "ai"] as const).map((item) => (
           <button key={item} type="button" className={tab === item ? "active" : ""} onClick={() => setTab(item)}>
-            {item === "overview" ? "Ringkasan" : item === "story" ? "Pengembangan Cerita" : "Karakter"}
+            {item === "overview" ? "Ringkasan" : item === "story" ? "Pengembangan Cerita" : item === "characters" ? "Karakter" : "Studio AI"}
           </button>
         ))}
       </nav>
+
+      {tab === "ai" && <AiPipeline story={workspace.story} characters={workspace.characters} />}
 
       {tab === "overview" && (
         <section className="studio-grid">
