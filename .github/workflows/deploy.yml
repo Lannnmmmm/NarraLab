@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - "novel/**"
-      - "canon/**"
+      - "publication.json"
       - "web/**"
       - ".github/workflows/deploy.yml"
   workflow_dispatch:
@@ -31,14 +31,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
+          cache-dependency-path: web/package.json
 
       - name: Pasang dependensi
         run: npm install
 
-      # Belum memblokir deploy; jadikan ketat setelah lolos bersih sekali.
-      - name: Periksa tipe
+      - name: Periksa tipe TypeScript
         run: npm run typecheck
-        continue-on-error: true
 
       - name: Bangun indeks dan situs
         run: npm run build
