@@ -21,15 +21,8 @@ export interface Chapter {
   versions: VersionInfo[];
 }
 
-export interface CanonDoc {
-  id: string;
-  title: string;
-  path: string;
-}
-
 export interface SiteIndex {
   generatedAt: string;
   chapters: Chapter[];
-  canon: CanonDoc[];
   totalWords: number;
 }
