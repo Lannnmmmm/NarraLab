@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 export type Route =
   | { page: "library" }
   | { page: "chapter"; number: number; version: number | null }
-  | { page: "canon"; id: string | null }
   | { page: "notfound" };
 
 export function parseHash(hash: string): Route {
@@ -13,11 +12,11 @@ export function parseHash(hash: string): Route {
     .replace(/^#\/?/, "")
     .split("/")
     .filter(Boolean)
-    .map((p) => {
+    .map((part) => {
       try {
-        return decodeURIComponent(p);
+        return decodeURIComponent(part);
       } catch {
-        return p;
+        return part;
       }
     });
 
@@ -26,11 +25,9 @@ export function parseHash(hash: string): Route {
   if (parts[0] === "bab") {
     const number = Number(parts[1]);
     if (!Number.isInteger(number) || number < 1) return { page: "notfound" };
-    const v = parts[2]?.match(/^v(\d+)$/);
-    return { page: "chapter", number, version: v ? Number(v[1]) : null };
+    const version = parts[2]?.match(/^v(\d+)$/);
+    return { page: "chapter", number, version: version ? Number(version[1]) : null };
   }
-
-  if (parts[0] === "canon") return { page: "canon", id: parts[1] ?? null };
 
   return { page: "notfound" };
 }
@@ -52,4 +49,5 @@ export const hrefLibrary = () => "#/";
 export const hrefChapter = (number: number, version?: number | null) =>
   `#/bab/${number}${version ? `/v${version}` : ""}`;
 
+// Tetap diekspor agar file lama yang belum dihapus tidak memutus proses typecheck.
 export const hrefCanon = (id?: string | null) => `#/canon${id ? `/${id}` : ""}`;
