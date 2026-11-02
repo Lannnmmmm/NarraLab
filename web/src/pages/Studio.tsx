@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import "./studio.css";
+import "../studio.css";
 
 type Character = {
   id: string;
