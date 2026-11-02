@@ -23,11 +23,15 @@ NarraLab adalah workspace pribadi untuk mengembangkan, menulis, memeriksa, merev
 ## Struktur repository
 
 - `INSTRUKSI-GPT.md` — aturan kerja AI untuk menulis dan merevisi novel.
-- `canon/` — dokumen internal cerita: premis, dunia, karakter, plot, gaya, timeline, dan status objek.
-- `novel/` — naskah per bab dan riwayat versinya.
+- `novels/<slug>/` — seluruh materi tiap novel dipisahkan per proyek: fondasi, canon, outline, bab, dan draf.
+- `templates/` — template kosong untuk memulai novel baru.
 - `publication.json` — daftar versi final yang dipilih untuk ditampilkan di Public Reader.
 - `web/` — aplikasi React, TypeScript, dan Vite untuk workspace serta pembaca publik.
 - `.github/workflows/deploy.yml` — pemeriksaan tipe, build, dan deployment ke GitHub Pages.
+
+## Struktur proyek novel
+
+Setiap judul wajib memiliki folder sendiri di `novels/`. Contoh: `novels/takhta-abu/`. Jangan menyimpan canon atau naskah novel tertentu di folder root bersama. Folder `templates/` hanya berisi template kosong.
 
 ## Production Workspace tahap awal
 
