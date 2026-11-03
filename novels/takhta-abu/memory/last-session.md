@@ -1,24 +1,27 @@
 # LAST SESSION — TAKHTA ABU
 
-**Bab terakhir:** Bab 1 v1 — "Makam yang Tidak Memiliki Nama"
+**Bab terakhir:** Bab 2 v1 — "Catatan yang Tak Pernah Ada"
 **Status:** Draf; menunggu peninjauan Author.
-**Lokasi adegan terakhir:** Jalan keluar pemakaman Nareth.
-**Keadaan terakhir:** Arka membawa lonceng kecil yang ditemukan di peti jasad identik dirinya.
+**Lokasi adegan terakhir:** Rumah Arka, Nareth.
+**Keadaan terakhir:** Arka menyimpan lonceng kecil di bawah lantai, telah dipanggil ke Morvane, dan menerima surat anonim.
 
 ## Hasil sesi
-- Arka menemukan catatan makam tanpa nama di Petak Utara.
-- Arka menemukan jasad berwajah identik dirinya.
-- Arka mengambil lonceng kecil berlambang tujuh garis.
-- Dua penjaga Gereja datang; setelah dentang menara, mereka kehilangan kejelasan tujuan pencarian.
-- Catatan makam berubah kosong; seorang perempuan tua menangis di depan kursi kosong tanpa memahami sebabnya.
+- Arka menyembunyikan lonceng kecil dan menyalin catatan kejadian ke beberapa tempat.
+- Dua petugas Gereja mendatangi rumahnya dan menanyainya tentang akses Petak Utara.
+- Arka menemukan rujukan arsip N-7 yang dipindahkan ke Morvane tanpa jadwal pengembalian.
+- Kronik menyebut “Peti tanpa penanda, satu unit”; satu halaman telah disobek.
+- Petugas arsip perempuan memperingatkan Arka agar tidak mencari sesuatu yang tidak ingin ditemukan orang lain.
+- Nama Arka tercantum dalam daftar pekerja yang dipanggil ke kantor pusat Gereja di Morvane.
+- Surat anonim memperingatkan Arka agar tidak membawa lonceng ke menara dan tidak mempercayai catatan kematian yang mencantumkan namanya.
 
 ## Keputusan Author
-- Rancangan Bab 1 disetujui sebelum penulisan.
-- Bab 1 v1 belum disetujui sebagai final.
+- Rancangan Bab 2 disetujui sebelum penulisan.
+- Bab 2 v1 disimpan sebagai draf untuk peninjauan; belum disetujui sebagai final.
 - Tidak ada perubahan canon yang disahkan.
+- publication.json tidak diubah.
 
 ## Langkah berikutnya
-1. Author membaca Bab 1 melalui tab Review Naskah.
+1. Author membaca Bab 2 v1 melalui tab Review Naskah.
 2. Catatan revisi dikumpulkan.
 3. Jika diminta revisi, buat v2 tanpa menimpa v1.
-4. Setelah Bab 1 disetujui, susun chapter plan Bab 2 berdasarkan Story Memory dan Mystery Ledger.
+4. Setelah Bab 2 ditinjau, susun rencana Bab 3 dengan memperhatikan pemanggilan ke Morvane dan misteri N-6/N-8, tanpa membuka jawaban N-7 terlalu dini.
